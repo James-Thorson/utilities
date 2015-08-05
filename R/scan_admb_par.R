@@ -1,6 +1,9 @@
 
 scan_admb_par = function( filename ){
-  Scan = scan( filename, what="character")  # , sep="\n"
+  Scan = scan( filename, what="character", quiet=TRUE, skip=1)  # , sep="\n"
+
+  optionswarnorig = options()$warn
+  options('warn'=-1)
 
   Return = NULL
   for(i in 1:length(Scan)){
@@ -16,6 +19,7 @@ scan_admb_par = function( filename ){
       Return = c(Return,New)
     }
   }
+  options('warn'=optionswarnorig)
   
   return(Return)
 }
