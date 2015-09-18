@@ -4,7 +4,7 @@ add_missing_zeros = function( data_frame, unique_sample_ID_colname, sample_colna
   # set of species and samples
   species_set = unique( data_frame[,species_colname] )
   if( !is.null(species_subset)) species_set = intersect( species_set, species_subset )
-  if( verbose==TRUE ) message( "Species to include: ",species_set)
+  if( verbose==TRUE ) message( "Species to include: ", paste(species_set,collapse=", ") )
   unique_sample_ID_set = unique(data_frame[,unique_sample_ID_colname])
   if( verbose==TRUE ) message( "Number of samples to include for each species: ",length(unique_sample_ID_set) )
   
@@ -35,7 +35,7 @@ add_missing_zeros = function( data_frame, unique_sample_ID_colname, sample_colna
   }
 
   # Sanity checks
-  Which = which( species_set == data_frame[,species_colname] )
+  Which = which( data_frame[,species_colname] %in% species_set )
   if( sum(new_data_frame[,sample_colname]) != sum(data_frame[Which,sample_colname]) ) stop( "missing rows in new data frame")
   
   # Return new data frame
