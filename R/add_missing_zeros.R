@@ -28,14 +28,15 @@ add_missing_zeros = function( data_frame, unique_sample_ID_colname, sample_colna
       if( length(Match)==1 ){
         temp_data_frame[i,sample_colname] = data_frame[Match,sample_colname]
       }
-      if( verbose==TRUE & (i%%1000)==0 ) message( "Processing row ",i," for species ",species_set[p] )
+      if( verbose==TRUE & (i%%1000)==0 ) message( "Processing row ",i," for ",species_set[p] )
     }
     new_data_frame = rbind(new_data_frame, temp_data_frame)
-    if( verbose==TRUE ) message( "Finished processing for species ",species_set[p] )
+    if( verbose==TRUE ) message( "Finished processing for ",species_set[p] )
   }
 
   # Sanity checks
-  if( sum(new_data_frame[,sample_colname]) != sum(data_frame[,sample_colname]) ) stop( "missing rows in new data frame")
+  Which = which( species_set == data_frame[,species_colname] )
+  if( sum(new_data_frame[,sample_colname]) != sum(data_frame[Which,sample_colname]) ) stop( "missing rows in new data frame")
   
   # Return new data frame
   return( new_data_frame )
