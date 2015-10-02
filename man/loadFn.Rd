@@ -1,16 +1,14 @@
-\name{loadFn}
-\alias{loadFn}
+\name{LoadFn}
+\alias{LoadFn}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{loadFn}
+\title{LoadFn}
 \description{}
 \usage{
-loadFn(directory, mods, McmcDiagnostics=FALSE,...)
+LoadFn(directory, mods,...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{directory}{The directory to save output in}
-  \item{mods}{A list of one or more fitted delta-GLMM model objects}
-  \item{McmcDiagnostics}{Boolean indicating whether or not to make the MCMCdiagnostics plots, defaults to FALSE.}
+  \item{file}{file to load}
   \item{\dots}{Other arguments can be passed.}  
 }
 \value{}
