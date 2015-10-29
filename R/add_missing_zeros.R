@@ -1,5 +1,5 @@
 
-add_missing_zeros = function( data_frame, unique_sample_ID_colname, sample_colname, species_subset=NULL, species_colname, combine_multiple_records=FALSE, verbose=TRUE ){
+add_missing_zeros = function( data_frame, unique_sample_ID_colname, sample_colname, species_subset=NULL, species_colname, if_multiple_records="Error", verbose=TRUE, na.rm=FALSE ){
 
   # set of species and samples
   species_set = unique( data_frame[,species_colname] )
@@ -22,8 +22,9 @@ add_missing_zeros = function( data_frame, unique_sample_ID_colname, sample_colna
       Match = which( data_frame[,unique_sample_ID_colname]==unique_sample_ID_set[i] )
       Match = Match[which( data_frame[Match,species_colname]==species_set[p]) ]
       if( length(Match)>1 ){
-        if( combine_multiple_records==FALSE) stop( "multiple unique-IDs with catch for same species")
-        if( combine_multiple_records==TRUE) temp_data_frame[i,sample_colname] = sum(data_frame[Match,sample_colname])
+        if( if_multiple_records=="Error") stop( "multiple unique-IDs with catch for same species")
+        if( if_multiple_records=="Combine") temp_data_frame[i,sample_colname] = sum(data_frame[Match,sample_colname])
+        if( if_multiple_records=="First") temp_data_frame[i,sample_colname] = data_frame[Match[1],sample_colname]
       }
       if( length(Match)==1 ){
         temp_data_frame[i,sample_colname] = data_frame[Match,sample_colname]
@@ -34,9 +35,15 @@ add_missing_zeros = function( data_frame, unique_sample_ID_colname, sample_colna
     if( verbose==TRUE ) message( "Finished processing for ",species_set[p] )
   }
 
+  if( na.rm==TRUE ){
+    data_frame = na.omit( data_frame )
+  }
+
   # Sanity checks
   Which = which( data_frame[,species_colname] %in% species_set )
-  if( sum(new_data_frame[,sample_colname]) != sum(data_frame[Which,sample_colname]) ) stop( "missing rows in new data frame")
+  if( if_multiple_records!="First"){
+    if( sum(new_data_frame[,sample_colname],na.rm=TRUE) != sum(data_frame[Which,sample_colname],na.rm=TRUE) ) stop( "missing rows in new data frame")
+  }
   
   # Return new data frame
   return( new_data_frame )
