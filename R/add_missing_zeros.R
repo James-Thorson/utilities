@@ -53,9 +53,11 @@ add_missing_zeros = function( data_frame, unique_sample_ID_colname, sample_colna
   }else{
     load(file=save_name)
     if( verbose==TRUE ){
+      species_set = unique( data_frame[,species_colname] )
+      unique_sample_ID_set = unique(data_frame[,unique_sample_ID_colname])
       message("Loading from ", save_name)
-      message( "Species to include: ", paste(species_set,collapse=", ") )
-      message( "Number of samples to include for each species: ",length(unique_sample_ID_set) )
+      message( "Species included: ", paste(species_set,collapse=", ") )
+      message( "Number of samples included for each species: ",length(unique_sample_ID_set) )
     }
   }
 
