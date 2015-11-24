@@ -4,7 +4,7 @@ add_missing_zeros = function( data_frame, unique_sample_ID_colname, sample_colna
   if( is.null(save_name) || !file.exists(save_name) ){
     # set of species and samples
     species_set = unique( data_frame[,species_colname] )
-    if( !is.null(species_subset)) species_set = intersect( species_set, species_subset )
+    if( !is.null(species_subset)) species_set = species_subset[which(species_subset%in%species_set)]
     unique_sample_ID_set = unique(data_frame[,unique_sample_ID_colname])
     if( verbose==TRUE ){
       message( "Species to include: ", paste(species_set,collapse=", ") )
