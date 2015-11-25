@@ -38,6 +38,10 @@ add_missing_zeros = function( data_frame, unique_sample_ID_colname, sample_colna
       if( verbose==TRUE ) message( "Finished processing for ",species_set[p] )
     }
 
+    # Relevel
+    new_data_frame[,species_colname] = factor(new_data_frame[,species_colname], levels=species_set)
+
+    # Exclude NAs
     if( na.rm==TRUE ){
       data_frame = na.omit( data_frame )
     }
