@@ -1,5 +1,5 @@
 
-save_fig = function( filename, width, height, units="in", res=200, type="png", FUN=NULL, ...){
+save_fig = function( filename, width, height, units="in", res=200, type="png", suffix="", FUN=NULL, ...){
   # how many figures
   if( is.null(FUN) ){
     n_fig = 1
@@ -8,6 +8,7 @@ save_fig = function( filename, width, height, units="in", res=200, type="png", F
     n_fig = max( length(res), length(type) )
     if( length(res)==1) res = rep(res,n_fig)
     if( length(type)==1) type = rep(type,n_fig)
+    if( length(suffix)==1) suffix = rep(suffix,n_fig)
   }
   # Remove file type from filename if necessary
   Test = sapply( c(".tif",".tiff",".png",".pdf",".jpg",".jpeg"), FUN=grep, filename)
@@ -18,10 +19,10 @@ save_fig = function( filename, width, height, units="in", res=200, type="png", F
   }
   # loop through figures
   for( figI in 1:n_fig ){
-    if( type[figI]=="png" ) png( filename=paste0(filename,".png"), width=width, height=height, units=units, res=res[figI], ... )
-    if( type[figI]=="pdf" ) pdf( filename=paste0(filename,".pdf"), width=width, height=height, units=units, res=res[figI], ... )
-    if( type[figI]=="tif" | type[figI]=="tiff" ) tiff( filename=paste0(filename,".tif"), width=width, height=height, units=units, res=res[figI], ... )
-    if( type[figI]=="jpg" | type[figI]=="jpeg" ) jpeg( filename=paste0(filename,".jpg"), width=width, height=height, units=units, res=res[figI], ... )
+    if( type[figI]=="png" ) png( filename=paste0(filename,suffix[figI],".png"), width=width, height=height, units=units, res=res[figI], ... )
+    if( type[figI]=="pdf" ) pdf( filename=paste0(filename,suffix[figI],".pdf"), width=width, height=height, units=units, res=res[figI], ... )
+    if( type[figI]=="tif" | type[figI]=="tiff" ) tiff( filename=paste0(filename,suffix[figI],".tif"), width=width, height=height, units=units, res=res[figI], ... )
+    if( type[figI]=="jpg" | type[figI]=="jpeg" ) jpeg( filename=paste0(filename,suffix[figI],".jpg"), width=width, height=height, units=units, res=res[figI], ... )
 
     # if FUN is present, then do full plots
     if( !is.null(FUN) ){
