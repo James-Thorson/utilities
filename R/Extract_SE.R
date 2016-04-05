@@ -1,7 +1,7 @@
 
-Extract_SE = function( SD, Report=NULL, Map=NULL, parname){
-  if( is.null(Report)) Return = rep(NA, sum(parname==rownames(summary(SD))))
-  if( !is.null(Report)) Return = array(NA, dim=dim(Report[[parname]]))
+Extract_SE = function( SD, Dim=NULL, Map=NULL, parname){
+  if( is.null(dim)) Return = rep(NA, sum(parname==rownames(summary(SD))))
+  if( !is.null(dim)) Return = array(NA, dim=Dim)
   if( !is.null(Map) ){
     if( parname %in% names(Map) ) Return[which(!is.na(Map[[parname]]))] = summary(SD)[which(parname==rownames(summary(SD))),'Std. Error']
     if( !(parname %in% names(Map)) ) Return[] = summary(SD)[which(parname==rownames(summary(SD))),'Std. Error']
