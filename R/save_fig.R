@@ -20,7 +20,7 @@ save_fig = function( filename, width, height, units="in", res=200, type="png", s
   # loop through figures
   for( figI in 1:n_fig ){
     if( type[figI]=="png" ) png( filename=paste0(filename,suffix[figI],".png"), width=width, height=height, units=units, res=res[figI], ... )
-    if( type[figI]=="pdf" ) pdf( filename=paste0(filename,suffix[figI],".pdf"), width=width, height=height, units=units, res=res[figI], ... )
+    if( type[figI]=="pdf" ) pdf( file=paste0(filename,suffix[figI],".pdf"), width=width, height=height, ... )
     if( type[figI]=="tif" | type[figI]=="tiff" ) tiff( filename=paste0(filename,suffix[figI],".tif"), width=width, height=height, units=units, res=res[figI], ... )
     if( type[figI]=="jpg" | type[figI]=="jpeg" ) jpeg( filename=paste0(filename,suffix[figI],".jpg"), width=width, height=height, units=units, res=res[figI], ... )
 
