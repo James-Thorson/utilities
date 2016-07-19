@@ -14,6 +14,7 @@ Load = function( file, dir=getwd(), remove_conflicts=TRUE, ... ){
   if( length(Object_names)>1 ) stop("File contains multiple objects")
 
   # Load object
+  load( file.path(dir,file) )
   Object = get( Object_names )
 
   # detach
