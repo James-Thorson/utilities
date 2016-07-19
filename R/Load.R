@@ -24,9 +24,9 @@ Load = function( file, dir=getwd(), remove_conflicts=TRUE, ... ){
 
   # delete if necessary
   if( remove_conflicts==TRUE ){
-    Which = which( names(Object) %in% ls() )
+    Which = which( names(Object) %in% ls(.GlobalEnv) )
     if( length(Which)>0 ){
-      remove( list=names(Object)[Which] )
+      remove( list=names(Object)[Which], pos=.GlobalEnv )
       message( "Deleting conflicts... ", paste(names(Object)[Which], collapse=",") )
     }
   }
