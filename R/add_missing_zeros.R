@@ -1,5 +1,5 @@
 
-add_missing_zeros = function( data_frame, unique_sample_ID_colname, sample_colname, species_subset=NULL, species_colname, if_multiple_records="Error", Method="Slow", verbose=TRUE, na.rm=FALSE, save_name=NULL ){
+add_missing_zeros = function( data_frame, unique_sample_ID_colname, sample_colname, species_subset=NULL, species_colname, if_multiple_records="Error", Method="Slow", verbose=TRUE, na.rm=FALSE, save_name=NULL, error_tol=1e-12 ){
 
   if( is.null(save_name) || !file.exists(save_name) ){
     # set of species and samples
@@ -61,10 +61,10 @@ add_missing_zeros = function( data_frame, unique_sample_ID_colname, sample_colna
     }
 
     # Sanity checks
-    if( if_multiple_records!="First"){
+    if( if_multiple_records!="First" ){
       Which = which( data_frame[,species_colname] %in% species_set )
-      almost_equal = function(a,b,tol=1e-12){ ifelse( abs(a-b)/mean(c(a,b))<tol, TRUE, FALSE ) }
-      if( !almost_equal(sum(new_data_frame[,sample_colname],na.rm=TRUE), sum(data_frame[Which,sample_colname],na.rm=TRUE)) ) stop( "missing rows in new data frame")
+      almost_equal = function(a,b,tol){ ifelse( abs(a-b)/mean(c(a,b))<tol, TRUE, FALSE ) }
+      if( !almost_equal(sum(new_data_frame[,sample_colname],na.rm=TRUE), sum(data_frame[Which,sample_colname],na.rm=TRUE),tol=error_tol) ) stop( "missing rows in new data frame")
     }
 
     # Save
