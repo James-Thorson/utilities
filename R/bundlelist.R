@@ -1,3 +1,4 @@
+#' @export
 bundlelist <-
 function( charvector ){
   Return = list()

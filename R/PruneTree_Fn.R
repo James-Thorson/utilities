@@ -1,4 +1,5 @@
 
+#' @export
 PruneTree_Fn = function( EdgeSet, Nodes2Keep, EdgeDist ){
   # IDEA: if network is "built" from single node, then there's one single path from outer ("starting") nodes to original ("terminal") node
   # Starting nodes

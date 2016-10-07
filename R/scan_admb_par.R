@@ -1,4 +1,5 @@
 
+#' @export
 scan_admb_par = function( filename ){
   Scan = scan( filename, what="character", quiet=TRUE, skip=1)  # , sep="\n"
 

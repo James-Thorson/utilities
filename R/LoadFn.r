@@ -1,3 +1,5 @@
+
+#' @export
 LoadFn <- function (file, ...) {
   ls.ext <- function(file) {
     local({

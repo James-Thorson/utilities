@@ -1,4 +1,5 @@
 
+#' @export
 JoinTree_Fn = function( EdgeSet, Nodes2Keep, EdgeDist){
   EdgeSetOrig = EdgeSet
   DistOrig = EdgeDist

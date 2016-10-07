@@ -1,4 +1,5 @@
 
+#' @export
 Extract_SE = function( SD, Dim=NULL, Map=NULL, parname, columns=2){
   # Size of return
   if( is.null(Dim)) Return = array(NA, dim=c(sum(parname==rownames(summary(SD))),length(columns)) )

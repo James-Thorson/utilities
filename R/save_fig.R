@@ -1,4 +1,17 @@
 
+#' Save a figure
+#'
+#' \code{save_fig} saves a figure to a local directory
+#'
+#' @param filename name (including absolute path) for figure
+#' @param width width for figure
+#' @param height height for figure
+#' @param units units for measuring height/width
+#' @param type character-vector specifying type of figure (Options: "png", "tif", "jpg"). If \code{length(type)}>1, and \code{FUN} is specified, then makes muliple plots
+#' @param suffix character-vector specifying suffix for different plots, e.g., if \code{type}>2
+#' @param FUN optional function containing expression (all lines of script) for plotting.  Useful if \code{length(type)}>1.
+
+#' @export
 save_fig = function( filename, width, height, units="in", res=200, type="png", suffix="", FUN=NULL, ...){
   # how many figures
   if( is.null(FUN) ){

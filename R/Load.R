@@ -1,4 +1,5 @@
 
+#' @export
 Load = function( file, dir=getwd(), remove_conflicts=TRUE, ... ){
   # Define function
   ls.ext <- function(file){
