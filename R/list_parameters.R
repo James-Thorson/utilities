@@ -10,19 +10,17 @@
 #' @export
 list_parameters = function( Obj ){
   Return = list()
+  Table = data.frame()
   if( length(Obj$env$random)>0 ){
     Return[["Fixed_effects"]] = names(Obj$env$last.par[-Obj$env$random])
-    message("Number of fixed effects:")
-    print( table(Return[["Fixed_effects"]]) )
-
-
     Return[["Random_effects"]] = names(Obj$env$last.par[Obj$env$random])
-    message("Number of random effects:")
-    print( table(Return[["Random_effects"]]) )
+    Table = data.frame("Coefficient_name"=names(table(Return[["Fixed_effects"]])), "Number_of_coefficients"=as.numeric(table(Return[["Fixed_effects"]])), "Type"="Fixed")
+    Table = rbind( Table, data.frame("Coefficient_name"=names(table(Return[["Random_effects"]])), "Number_of_coefficients"=as.numeric(table(Return[["Random_effects"]])), "Type"="Random"))
   }else{
     Return[["Fixed_effects"]] = names(Obj$env$last.par)
-    message("Number of parameters:")
-    print( table(Return[["Fixed_effects"]]) )
+    Table = data.frame("Coefficient_name"=names(table(Return[["Fixed_effects"]])), "Number_of_coefficients"=as.numeric(table(Return[["Fixed_effects"]])), "Type"="Fixed")
   }
-  return( invisible(Return) )
+  message("List of estimated fixed and random effects:")
+  print(Table)
+  return( invisible(Table) )
 }
