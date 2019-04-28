@@ -9,7 +9,7 @@ plot_histogram(x, freq = TRUE, breaks = "Sturges", y_buffer = 0.05,
   bty = "o", add = FALSE, ...)
 }
 \arguments{
-\item{x, }{a list of entries to transform to a histogram and plot}
+\item{x}{a list of entries to transform to a histogram and plot, or a matrix where each column is plotted as a histogram}
 
 \item{y_buffer, }{a buffer at the top of the highest histogram}
 

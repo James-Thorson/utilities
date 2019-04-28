@@ -3,7 +3,7 @@
 #'
 #' \code{plot_histogram} plots one or more histograms on a single panel
 #'
-#' @param x, a list of entries to transform to a histogram and plot
+#' @param x a list of entries to transform to a histogram and plot, or a matrix where each column is plotted as a histogram
 #' @inheritParams hist
 #' @param y_buffer, a buffer at the top of the highest histogram
 #' @param xlim, bounds for x-axis (default is detected from \code{x})
@@ -15,7 +15,18 @@
 #' @export
 plot_histogram = function( x, freq=TRUE, breaks="Sturges", y_buffer=0.05, ylim=NULL, xlim=NULL, main="", col="lightgrey", bty="o", add=FALSE, ...){
   # Modify default inputs
-  if( is.list(x)==FALSE ) x = list( x )
+  if( !is.list(x) ){
+    if( is.vector(x) ){
+      x = list( x )
+    }
+    if( is.matrix(x) ){
+      tmp = list()
+      for( cI in 1:ncol(x) ){
+        tmp[[cI]] = x[,cI]
+      }
+      x = tmp
+    }
+  }
   if( length(col)==1 & length(x)>1 ) col = rep(col,length(x))
 
   # Figure out ylim
