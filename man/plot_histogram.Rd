@@ -11,11 +11,41 @@ plot_histogram(x, freq = TRUE, breaks = "Sturges", y_buffer = 0.05,
 \arguments{
 \item{x}{a list of entries to transform to a histogram and plot, or a matrix where each column is plotted as a histogram}
 
+\item{freq}{logical; if \code{TRUE}, the histogram graphic is a
+    representation of frequencies, the \code{counts} component of
+    the result; if \code{FALSE}, probability densities, component
+    \code{density}, are plotted (so that the histogram has a total area
+    of one).  Defaults to \code{TRUE} \emph{if and only if} \code{breaks} are
+    equidistant (and \code{probability} is not specified).}
+
+\item{breaks}{one of:
+    \itemize{
+      \item a vector giving the breakpoints between histogram cells,
+      \item a function to compute the vector of breakpoints,
+      \item a single number giving the number of cells for the histogram,
+      \item a character string naming an algorithm to compute the
+      number of cells (see \sQuote{Details}),
+      \item a function to compute the number of cells.
+    }
+    In the last three cases the number is a suggestion only; as the
+    breakpoints will be set to \code{\link{pretty}} values, the number
+    is limited to \code{1e6} (with a warning if it was larger).  If
+    \code{breaks} is a function, the \code{x} vector is supplied to it
+    as the only argument (and the number of breaks is only limited by
+    the amount of available memory).
+  }
+
 \item{y_buffer, }{a buffer at the top of the highest histogram}
 
 \item{ylim, }{bounds for y-axis (default is detected from \code{x})}
 
 \item{xlim, }{bounds for x-axis (default is detected from \code{x})}
+
+\item{main}{these arguments to \code{title} have useful
+    defaults here.}
+
+\item{col}{a colour to be used to fill the bars.
+    The default of \code{NULL} yields unfilled bars.}
 
 \item{...}{arguments passed to \code{hist}}
 }

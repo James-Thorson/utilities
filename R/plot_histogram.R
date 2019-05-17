@@ -4,11 +4,11 @@
 #' \code{plot_histogram} plots one or more histograms on a single panel
 #'
 #' @param x a list of entries to transform to a histogram and plot, or a matrix where each column is plotted as a histogram
-#' @inheritParams hist
+#' @inheritParams graphics::hist
 #' @param y_buffer, a buffer at the top of the highest histogram
 #' @param xlim, bounds for x-axis (default is detected from \code{x})
 #' @param ylim, bounds for y-axis (default is detected from \code{x})
-#' @inheritParams plot
+#' @inheritParams graphics::plot
 #' @param ... arguments passed to \code{hist}
 
 
