@@ -24,7 +24,7 @@ save_fig = function( filename, width, height, units="in", res=200, type="png", s
     if( length(suffix)==1) suffix = rep(suffix,n_fig)
   }
   # Remove file type from filename if necessary
-  Test = sapply( c(".tif",".tiff",".png",".pdf",".jpg",".jpeg"), FUN=grep, filename)
+  Test = sapply( c(".tif",".tiff",".png",".pdf",".jpg",".jpeg",".eps"), FUN=grep, filename)
   if(length(unlist(Test))>0){
     filename = strsplit(filename,"\\.")[[1]]
     filename = filename[-length(filename)]
@@ -36,6 +36,7 @@ save_fig = function( filename, width, height, units="in", res=200, type="png", s
     if( type[figI]=="pdf" ) pdf( file=paste0(filename,suffix[figI],".pdf"), width=width, height=height, ... )
     if( type[figI]=="tif" | type[figI]=="tiff" ) tiff( filename=paste0(filename,suffix[figI],".tif"), width=width, height=height, units=units, res=res[figI], ... )
     if( type[figI]=="jpg" | type[figI]=="jpeg" ) jpeg( filename=paste0(filename,suffix[figI],".jpg"), width=width, height=height, units=units, res=res[figI], ... )
+    if( type[figI]=="eps" ) postscript( file=paste0(filename,suffix[figI],".eps"), width=width, height=height, horizontal=FALSE, onefile=FALSE, paper="special", ... )
 
     # if FUN is present, then do full plots
     if( !is.null(FUN) ){
