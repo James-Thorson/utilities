@@ -13,7 +13,19 @@
 
 
 #' @export
-plot_histogram = function( x, freq=TRUE, breaks="Sturges", y_buffer=0.05, ylim=NULL, xlim=NULL, main="", col="lightgrey", bty="o", add=FALSE, ...){
+plot_histogram <-
+function( x,
+          freq = TRUE,
+          breaks = "Sturges",
+          y_buffer = 0.05,
+          ylim = NULL,
+          xlim = NULL,
+          main = "",
+          col = "lightgrey",
+          bty = "o",
+          add = FALSE,
+          ...){
+
   # Modify default inputs
   if( !is.list(x) ){
     if( is.vector(x) ){
