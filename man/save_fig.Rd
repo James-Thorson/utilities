@@ -4,8 +4,17 @@
 \alias{save_fig}
 \title{Save a figure}
 \usage{
-save_fig(filename, width, height, units = "in", res = 200,
-  type = "png", suffix = "", FUN = NULL, ...)
+save_fig(
+  filename,
+  width,
+  height,
+  units = "in",
+  res = 200,
+  type = "png",
+  suffix = "",
+  FUN = NULL,
+  ...
+)
 }
 \arguments{
 \item{filename}{name (including absolute path) for figure}

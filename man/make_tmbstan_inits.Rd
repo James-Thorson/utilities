@@ -4,8 +4,13 @@
 \alias{make_tmbstan_inits}
 \title{Make initial values list for tmbstan}
 \usage{
-make_tmbstan_inits(obj, cores, amount = 1, upper = rep(Inf,
-  length(obj$par)), lower = rep(-Inf, length(obj$par)))
+make_tmbstan_inits(
+  obj,
+  cores,
+  amount = 1,
+  upper = rep(Inf, length(obj$par)),
+  lower = rep(-Inf, length(obj$par))
+)
 }
 \arguments{
 \item{obj}{Compiled TMB object, either before or after optimization}

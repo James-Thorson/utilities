@@ -7,4 +7,4 @@ Authors@R: person("James","Thorson", email="James.Thorson@noaa.gov", role=c("aut
 Maintainer: James Thorson <James.Thorson@noaa.gov>
 Description: This package includes functions built by Jim Thorson for his own personal use
 License: What license is it under?
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.2

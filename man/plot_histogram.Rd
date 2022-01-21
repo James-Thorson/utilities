@@ -4,9 +4,19 @@
 \alias{plot_histogram}
 \title{Plot histogram}
 \usage{
-plot_histogram(x, freq = TRUE, breaks = "Sturges", y_buffer = 0.05,
-  ylim = NULL, xlim = NULL, main = "", col = "lightgrey",
-  bty = "o", add = FALSE, ...)
+plot_histogram(
+  x,
+  freq = TRUE,
+  breaks = "Sturges",
+  y_buffer = 0.05,
+  ylim = NULL,
+  xlim = NULL,
+  main = "",
+  col = "lightgrey",
+  bty = "o",
+  add = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{a list of entries to transform to a histogram and plot, or a matrix where each column is plotted as a histogram}
@@ -41,8 +51,9 @@ plot_histogram(x, freq = TRUE, breaks = "Sturges", y_buffer = 0.05,
 
 \item{xlim, }{bounds for x-axis (default is detected from \code{x})}
 
-\item{main}{these arguments to \code{title} have useful
-    defaults here.}
+\item{main}{main title and axis labels: these arguments to
+    \code{\link[graphics]{title}()} get \dQuote{smart} defaults here, e.g., the default
+    \code{ylab} is \code{"Frequency"} iff \code{freq} is true.}
 
 \item{col}{a colour to be used to fill the bars.
     The default of \code{NULL} yields unfilled bars.}
